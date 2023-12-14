@@ -1,12 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Table } from "@/components/ui/table";
-
-
+import {redirect} from 'next/navigation';
 
 export default function Home() {
-  
-  return (
-    //<Button> Hello World </Button>
-    <Table></Table>
-  )
+  return redirect('/people');
 }
