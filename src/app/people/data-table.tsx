@@ -89,8 +89,7 @@ export function PeopleDataTable<TData, TValue>({
             <Button variant="outline">Columns</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {
-            table
+            {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
               .map((column) => {
@@ -113,30 +112,35 @@ export function PeopleDataTable<TData, TValue>({
       {/* table */}
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="w-full" >
+          <TableHeader className="w-full">
             {table.getHeaderGroups().map((headerGroup) => {
               return (
                 <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                  <TableHead
-                    key={header.id}
-                    colSpan={
-                      header.column.columnDef.header === "Daily"
-                        ? headerGroup.headers.length
-                        : undefined
-                    }
-                    className={
-                      header.column.columnDef.header === "Daily"
-                        ? "justify-center text-center"
-                        : undefined
-                    }
-                  >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
-                  </TableHead>
-                ))}
+                  {headerGroup.headers.map((header) => {
+                    const isParentHeader =
+                      header.column.columnDef.columns &&
+                      header.column.columnDef.columns.length > 0;
+                    const colSpanValue = isParentHeader
+                      ? header.column.columnDef.columns.length
+                      : undefined;
+
+                    return (
+                      <TableHead
+                        key={header.id}
+                        colSpan={colSpanValue}
+                        className={
+                          isParentHeader
+                            ? "justify-center text-center"
+                            : undefined
+                        }
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </TableHead>
+                    );
+                  })}
                 </TableRow>
               );
             })}

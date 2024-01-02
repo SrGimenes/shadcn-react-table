@@ -21,6 +21,12 @@ interface ColumnDefinition {
 }
 
 export const columns: ColumnDef<Person>[] = [
+  // {
+  //   header:"Drying",
+  //   columns: [
+
+  //   ]
+  // },
   {
     header: "Daily",
     enableGrouping: true,
@@ -30,32 +36,8 @@ export const columns: ColumnDef<Person>[] = [
         enableGrouping: true,
         columns: [
           {
-            //header: "Monthly",
-            accessorKey: "last_name",
+            accessorKey: "first_name",
           },
-          // {
-          //   id: "select",
-          //   header: ({ table }) => {
-          //     return (
-          //       <Checkbox
-          //         checked={table.getIsAllPageRowsSelected()}
-          //         onCheckedChange={(value) => {
-          //           table.toggleAllPageRowsSelected(!!value);
-          //         }}
-          //       />
-          //     );
-          //   },
-          //   cell: ({ row }) => {
-          //     return (
-          //       <Checkbox
-          //         checked={row.getIsSelected()}
-          //         onCheckedChange={(value) => {
-          //           row.toggleSelected(!!value);
-          //         }}
-          //       />
-          //     );
-          //   },
-          // },
         ],
       },
       {
@@ -63,14 +45,7 @@ export const columns: ColumnDef<Person>[] = [
         enableGrouping: true,
         columns: [
           {
-            //header: "First Name",
-            accessorKey: "first_name",
-            // cell: (props) => (
-            //   <div className="text-center">
-            //     <div className="text-sm text-gray-500">Title</div>
-            //     <div className="font-bold">{props.row.original.first_name}</div>
-            //   </div>
-            // ),
+            accessorKey: "last_name",
           },
         ]
       },
@@ -79,43 +54,79 @@ export const columns: ColumnDef<Person>[] = [
         enableGrouping: true,
         columns: [
           {
-            //header: "Yearly",
             accessorKey: "email",
           },
         ]
       }
     ],
   },
-
-  // {
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button
-  //         variant="ghost"
-  //         onClick={() => {
-  //           column.toggleSorting(column.getIsSorted() === "asc");
-  //         }}
-  //       >
-  //         Person ID
-  //         <ArrowUpDown className="ml-2 h-4 w-4" />
-  //       </Button>
-  //     );
-  //   },
-  //   accessorKey: "id",
-  // },
-  // {
-  //   header: "Gender",
-  //   accessorKey: "gender",
-  // },
-  // {
-  //   header: "Birth Day",
-  //   accessorKey: "date_of_birth",
-  //   cell: ({ row }) => {
-  //     const date_of_birth = row.getValue("date_of_birth");
-  //     const formatted = new Date(date_of_birth as string).toLocaleDateString();
-  //     return <div className="font-medium">{formatted}</div>;
-  //   },
-  // },
+  {
+    header: "Monthly",
+    enableGrouping: true,
+    columns: [
+      {
+        header: "ACT",
+        enableGrouping: true,
+        columns: [
+          {
+            header: "Monthly",
+            accessorKey: "first_name",
+          },
+        ],
+      },
+      {
+        header: "BP",
+        enableGrouping: true,
+        columns: [
+          {
+            accessorKey: "last_name",
+          },
+        ]
+      },
+      {
+        header:"VAR",
+        enableGrouping: true,
+        columns: [
+          {
+            accessorKey: "email",
+          },
+        ]
+      }
+    ],
+  },
+  {
+    header: "Yearly",
+    enableGrouping: true,
+    columns: [
+      {
+        header: "ACT",
+        enableGrouping: true,
+        columns: [
+          {
+            accessorKey: "first_name",
+          },
+        ],
+      },
+      {
+        header: "BP",
+        enableGrouping: true,
+        columns: [
+          {
+            accessorKey: "last_name",
+          },
+        ]
+      },
+      {
+        header:"VAR",
+        enableGrouping: true,
+        columns: [
+          {
+            accessorKey: "email",
+          },
+        ]
+      }
+    ],
+  },
   {
     id: "actions",
     cell: ({ row }) => {
