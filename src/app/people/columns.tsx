@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Person } from "@/people";
 import { ColumnDef } from "@tanstack/react-table";
 import {
   DropdownMenu,
@@ -14,19 +13,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Data } from "@/data/reportData";
 
 interface ColumnDefinition {
   header: React.ReactNode;
   accessorKey: string;
 }
 
-export const columns: ColumnDef<Person>[] = [
-  // {
-  //   header:"Drying",
-  //   columns: [
-
-  //   ]
-  // },
+export const columns: ColumnDef<Data>[] = [
+  {
+    header:"Drying",
+    columns: [
+      {
+        accessorKey: ""
+      }
+    ]
+  },
   {
     header: "Daily",
     enableGrouping: true,
@@ -36,7 +38,7 @@ export const columns: ColumnDef<Person>[] = [
         enableGrouping: true,
         columns: [
           {
-            accessorKey: "first_name",
+            accessorKey: "name",
           },
         ],
       },
@@ -70,7 +72,7 @@ export const columns: ColumnDef<Person>[] = [
         columns: [
           {
             header: "Monthly",
-            accessorKey: "first_name",
+            //accessorKey: "first_name",
           },
         ],
       },
@@ -127,30 +129,30 @@ export const columns: ColumnDef<Person>[] = [
       }
     ],
   },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const person = row.original;
-      const personId = person.id;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="w-8 h-8 p-0">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                navigator.clipboard.writeText(person.first_name.toString());
-              }}
-            >
-              Copy person name
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     const person = row.original;
+  //     const personId = person.id;
+  //     return (
+  //       <DropdownMenu>
+  //         <DropdownMenuTrigger asChild>
+  //           <Button variant="ghost" className="w-8 h-8 p-0">
+  //             <MoreHorizontal className="h-4 w-4" />
+  //           </Button>
+  //         </DropdownMenuTrigger>
+  //         <DropdownMenuContent>
+  //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+  //           <DropdownMenuItem
+  //             onClick={() => {
+  //               navigator.clipboard.writeText(person.first_name.toString());
+  //             }}
+  //           >
+  //             Copy person name
+  //           </DropdownMenuItem>
+  //         </DropdownMenuContent>
+  //       </DropdownMenu>
+  //     );
+  //   },
+  // },
 ];

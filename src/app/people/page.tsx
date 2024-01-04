@@ -1,6 +1,6 @@
-import { people } from "@/people";
 import { PeopleDataTable } from "./data-table"
 import { columns } from "./columns";
+import { dataDaily } from "@/data/reportData";
 
 
 type Props = {};
@@ -8,7 +8,7 @@ type Props = {};
 const People = (props: Props) => {
     return (
       <div className='container py-10 mx-auto'>
-        <PeopleDataTable columns={columns} data={people} />
+        <PeopleDataTable columns={columns} data={dataDaily} />
       </div>
     )
 }

@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -123,7 +124,6 @@ export function PeopleDataTable<TData, TValue>({
                     const colSpanValue = isParentHeader
                       ? header.column.columnDef.columns.length
                       : undefined;
-
                     return (
                       <TableHead
                         key={header.id}
