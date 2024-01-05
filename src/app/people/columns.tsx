@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ColumnDef, RowSelection } from "@tanstack/react-table";
+import { CellContext, ColumnDef } from "@tanstack/react-table";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,21 +15,44 @@ import { ArrowUpDown, MoreHorizontal, Rows } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Data, dataDaily } from "@/data/reportData";
 import { DailyData, DailyItem } from "@/data/type";
-import { useRowSelect } from "react-table";
+import { Row, useRowSelect } from "react-table";
 
 interface ColumnDefinition {
   header: React.ReactNode;
   accessorKey: string;
 }
 
-export const columns: ColumnDef<DailyItem,any>[] = [
+export const columns: ColumnDef<DailyItem, any>[] = [
   {
-    header:"Drying",
+    header: "Drying",
     columns: [
       {
         header: "Name",
-        accessorKey: "name"
-      }
-    ]
+        accessorKey: "name",
+      },
+      {
+        header: "Daily",
+        columns: [
+          {
+            header: "ACT",
+            accessorKey: "data.daily.act",
+            cell: ({ cell }: CellContext<DailyItem, any>) =>
+              cell.row.original.data.daily.act,
+          },
+          {
+            header: "BP",
+            accessorKey: "data.daily.bp",
+            cell: ({ cell }: CellContext<DailyItem, any>) =>
+              cell.row.original.data.daily.bp,
+          },
+          {
+            header: "VAR",
+            accessorKey: "data.daily.var",
+            cell: ({ cell }: CellContext<DailyItem, any>) =>
+              cell.row.original.data.daily.var,
+          }
+        ],
+      },
+    ],
   },
 ];
