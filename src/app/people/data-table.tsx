@@ -121,7 +121,7 @@ export function PeopleDataTable({
                   {headerGroup.headers.map((header) => {
                     const isParentHeader =
                       header.column.columnDef.columns &&
-                      header.column.columnDef.columns.length > 0;
+                      header.column.columnDef.columns.length > 0; 
                     const colSpanValue = isParentHeader
                       ? header.column.columnDef.columns.length
                       : undefined;
