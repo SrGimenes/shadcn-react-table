@@ -1,7 +1,7 @@
 export type DailyMetrics = {
-  act: string;
-  bp: string;
-  var: string;
+  act: number;
+  bp: number;
+  var: number;
 };
 
 export type DailyItem = {

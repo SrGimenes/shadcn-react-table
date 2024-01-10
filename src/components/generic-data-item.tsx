@@ -35,15 +35,12 @@ import { table } from "console";
 
 import React from "react";
 
-interface DataTableProps{
+interface DataItemProps {
   columns: ColumnDef<DailyItem, any>[];
   data: DailyItem[];
 }
 
-export function PeopleDataTable({
-  columns,
-  data,
-}: DataTableProps) {
+export function GenericDataItem({ columns, data }: DataItemProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -70,12 +67,11 @@ export function PeopleDataTable({
     },
   });
 
-  //console.log("AAAA", table.getHeaderGroups())
   return (
     <div>
       {/* input */}
       <div className="flex items-center py-4">
-        {/* <Input
+        <Input
           placeholder="Filter First names"
           value={
             (table.getColumn("first_name")?.getFilterValue() as string) || ""
@@ -84,9 +80,9 @@ export function PeopleDataTable({
             table.getColumn("first_name")?.setFilterValue(e.target.value);
           }}
           className="max-w-sm"
-        /> */}
+        />
 
-        {/* <DropdownMenu>
+        <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="outline">Columns</Button>
           </DropdownMenuTrigger>
@@ -109,7 +105,7 @@ export function PeopleDataTable({
                 );
               })}
           </DropdownMenuContent>
-        </DropdownMenu> */}
+        </DropdownMenu>
       </div>
       {/* table */}
       <div className="rounded-md border">
@@ -191,4 +187,4 @@ export function PeopleDataTable({
   );
 }
 
-export default PeopleDataTable;
+export default GenericDataItem;
