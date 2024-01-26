@@ -34,6 +34,9 @@ import {
 import { table } from "console";
 
 import React from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { DatePickerWithRange } from "./DataPickerRange";
+
 
 interface DataItemProps {
   columns: ColumnDef<DailyItem, any>[];
@@ -72,19 +75,24 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
       {/* input */}
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter First names"
+          placeholder="Filter by name"
           value={
-            (table.getColumn("first_name")?.getFilterValue() as string) || ""
+            (table.getColumn("name")?.getFilterValue() as string) || ""
           }
           onChange={(e) => {
-            table.getColumn("first_name")?.setFilterValue(e.target.value);
+            table.getColumn("name")?.setFilterValue(e.target.value);
           }}
           className="max-w-sm"
         />
 
+        <Button className="ml-4">
+          Export to PDF
+        </Button>
+        <ThemeToggle className="ml-4"/>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant="outline">Columns</Button>
+            <Button variant="outline" className="ml-4" >Columns</Button>
+            
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             {table
@@ -96,7 +104,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) => {
+                    onCheckedChange={(value: boolean) => {
                       column.toggleVisibility(!!value);
                     }}
                   >
@@ -106,6 +114,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
+        <DatePickerWithRange className="ml-4"/>
       </div>
       {/* table */}
       <div className="rounded-md border">
@@ -147,8 +156,11 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             {table.getRowModel().rows?.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id}
+                    className="border-b"
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {/* {cell.getValue()} */}
                   </TableCell>
                 ))}
               </TableRow>

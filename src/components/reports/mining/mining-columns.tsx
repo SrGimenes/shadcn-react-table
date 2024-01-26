@@ -23,26 +23,26 @@ const createDailyColumns = (prefix: 'daily' | 'monthly' | 'yearly'): ColumnDef<D
     header: "BP",
     accessorKey: `data.${prefix}.bp`,
     cell: ({ cell }: CellContext<DailyItem, any>) =>
-      cell.row.original.data[prefix].act,
+      cell.row.original.data[prefix].bp,
   },
   {
     header: "VAR",
     accessorKey: `data.${prefix}.var`,
     cell: ({ cell }: CellContext<DailyItem, any>) =>
-      cell.row.original.data[prefix].act,
+      cell.row.original.data[prefix].var,
   },
 ];
 
 export const mineColumns: ColumnDef<DailyItem, any>[] = [
   {
-    header: "Processing",
+    header: "Mine",
     columns: [
       {
         header: "",
         accessorKey: "name",
       },
       {
-        header: "Daily Report",
+        header: "Daily",
         columns: createDailyColumns('daily')
       },
       {

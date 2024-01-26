@@ -10,8 +10,8 @@ const Report = (props: Props) => {
     return (
       <div className='container py-10 mx-auto'>
         <GenericDataItem columns={dryingColumns} data={dataDaily.drying} /> 
-        {/* <GenericDataItem columns={mineColumns} data={dataDaily.mine}/>
-        <GenericDataItem columns={processingColumns} data={dataDaily.processing}/>      */}
+        <GenericDataItem columns={processingColumns} data={dataDaily.processing}/>   
+        <GenericDataItem columns={mineColumns} data={dataDaily.mine}/>  
       </div>
     )
 }

@@ -24,13 +24,13 @@ const createDailyColumns = (prefix: 'daily' | 'monthly' | 'yearly'): ColumnDef<D
       header: "BP",
       accessorKey: `data.${prefix}.bp`,
       cell: ({ cell }: CellContext<DailyItem, any>) =>
-        cell.row.original.data[prefix].act,
+        cell.row.original.data[prefix].bp,
     },
     {
       header: "VAR",
       accessorKey: `data.${prefix}.var`,
       cell: ({ cell }: CellContext<DailyItem, any>) =>
-        cell.row.original.data[prefix].act,
+        cell.row.original.data[prefix].var,
     },
   ];
 
