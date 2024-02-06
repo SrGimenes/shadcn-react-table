@@ -119,7 +119,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
       {/* table */}
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="w-full">
+          <TableHeader className="w-full ">
             {table.getHeaderGroups().map((headerGroup) => {
               return (
                 <TableRow key={headerGroup.id}>
@@ -128,8 +128,12 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                       header.column.columnDef.columns &&
                       header.column.columnDef.columns.length > 0; 
                     const colSpanValue = isParentHeader
-                      ? header.column.columnDef.columns.length
+                      ? header.column.columnDef.columns.length === 4 ? 10 : header.column.columnDef.columns.length
                       : undefined;
+                      {console.log(isParentHeader, "isParentHeader")}
+                      {console.log(colSpanValue, "colSpanValue")}
+                      {console.log(header.column.columnDef.header, "header.column.columnDef.header")}
+                      {console.log(header.getContext(), "header.getContext()")}
                     return (
                       <TableHead
                         key={header.id}
