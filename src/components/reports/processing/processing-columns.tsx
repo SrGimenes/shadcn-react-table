@@ -54,32 +54,32 @@ export const processingColumns: ColumnDef<DailyItem, any>[] = [
         header: "Year",
         columns: createDailyColumns('yearly')
       },
-      {
-        id: "actions",
-        cell: ({ row }) => {
-          const a = row.original;
+      // {
+      //   id: "actions",
+      //   cell: ({ row }) => {
+      //     const a = row.original;
 
-          return (
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button variant="ghost" className="w-8 h-8 p-0">
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem
-                // onClick={() => {
-                //     navigator.clipboard.writeText()
-                // }}
-                >
-                  Copy something
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          );
-        },
-      },
+      //     return (
+      //       <DropdownMenu>
+      //         <DropdownMenuTrigger>
+      //           <Button variant="ghost" className="w-8 h-8 p-0">
+      //             <MoreHorizontal className="h-4 w-4" />
+      //           </Button>
+      //         </DropdownMenuTrigger>
+      //         <DropdownMenuContent>
+      //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+      //           <DropdownMenuItem
+      //           // onClick={() => {
+      //           //     navigator.clipboard.writeText()
+      //           // }}
+      //           >
+      //             Copy something
+      //           </DropdownMenuItem>
+      //         </DropdownMenuContent>
+      //       </DropdownMenu>
+      //     );
+      //   },
+      // },
     ],
   },
 ];

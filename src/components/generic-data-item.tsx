@@ -94,7 +94,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             <Button variant="outline" className="ml-4" >Columns</Button>
             
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          {/* <DropdownMenuContent align="end">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())
@@ -112,7 +112,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                   </DropdownMenuCheckboxItem>
                 );
               })}
-          </DropdownMenuContent>
+          </DropdownMenuContent> */}
         </DropdownMenu>
         <DatePickerWithRange className="ml-4"/>
       </div>
