@@ -119,7 +119,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
       {/* table */}
       <div className="rounded-md border">
         <Table>
-          <TableHeader className="w-full ">
+          <TableHeader className="w-full">
             {table.getHeaderGroups().map((headerGroup) => {
               return (
                 <TableRow key={headerGroup.id}>
@@ -142,6 +142,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                           isParentHeader
                             ? "justify-center text-center"
                             : undefined
+                            
                         }
                       >
                         {flexRender(
@@ -158,10 +159,15 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
 
           <TableBody>
             {table.getRowModel().rows?.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow key={row.id} className="hover:bg-cyan-50">
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}
-                    className="border-b"
+                  className="border-l"
+                  //className={cell.column.columnDef.header}
+                    //className={cell.column.accessorFn?.arguments.act !== "" ? "border-l" : ""}
+                  //className={["Daily", "Monthly", "Year"].includes(cell.column.columnDef.header) ? "border-l" : ""}
+                  //className={cell.column && cell.column.columnDef.header && ["Daily", "Monthly", "Year"].includes(cell.columns.var) ? "border-l" : ""}
+                    //className={cell.column.accessorFn?.arguments.ACT === "Daily" || cell.column.header === "Monthly" || cell.column.header === "Year" ? "border-l" : ""
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     {/* {cell.getValue()} */}
@@ -185,6 +191,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             table.previousPage();
           }}
           disabled={!table.getCanPreviousPage()}
+          className="hover:bg-cyan-50"
         >
           Anterior
         </Button>
@@ -195,6 +202,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             table.nextPage();
           }}
           disabled={!table.getCanNextPage()}
+          className="hover:bg-cyan-50"
         >
           Próximo
         </Button>
