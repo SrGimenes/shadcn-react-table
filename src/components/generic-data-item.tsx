@@ -35,7 +35,7 @@ import { table } from "console";
 
 import React from "react";
 import { ThemeToggle } from "./ThemeToggle";
-import { DatePickerWithRange } from "./DataPickerRange";
+import { DatePicker } from "./DataPickerRange";
 
 
 interface DataItemProps {
@@ -114,7 +114,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
               })}
           </DropdownMenuContent> */}
         </DropdownMenu>
-        <DatePickerWithRange className="ml-4"/>
+        <DatePicker className = "ml-4" />
       </div>
       {/* table */}
       <div className="rounded-md border">
@@ -157,29 +157,49 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             })}
           </TableHeader>
 
-          <TableBody>
-            {table.getRowModel().rows?.map((row) => (
-              <TableRow key={row.id} className="hover:bg-cyan-50">
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}
-                  className="border-l"
-                  //className={cell.column.columnDef.header}
-                    //className={cell.column.accessorFn?.arguments.act !== "" ? "border-l" : ""}
-                  //className={["Daily", "Monthly", "Year"].includes(cell.column.columnDef.header) ? "border-l" : ""}
-                  //className={cell.column && cell.column.columnDef.header && ["Daily", "Monthly", "Year"].includes(cell.columns.var) ? "border-l" : ""}
-                    //className={cell.column.accessorFn?.arguments.ACT === "Daily" || cell.column.header === "Monthly" || cell.column.header === "Year" ? "border-l" : ""
-                  >
+
+
+          {/* <TableBody>
+          {table.getRowModel().rows?.map((row) => (
+            <TableRow key={row.id} className="hover:bg-cyan-50">
+              {row.getVisibleCells().map((cell) => {
+                const act = cell.row.original.data.daily.act;
+                const border = act === "" ? "border-l" : ""; 
+                console.log(border)
+                return (
+                  <TableCell key={cell.id} className={border}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    {/* {cell.getValue()} */}
                   </TableCell>
-                ))}
-              </TableRow>
-            )) ?? (
-              <TableRow>
-                <TableCell>No results</TableCell>
-              </TableRow>
-            )}
-          </TableBody>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableBody> */}
+
+        <TableBody>
+          {table.getRowModel().rows?.map((row) => (
+            <TableRow key={row.id} className="hover:bg-cyan-50">
+              {row.getVisibleCells().map((cell) => {
+                const isActColumn = cell.row.original.data.daily.act && cell.row.original.data.monthly.act && cell.row.original.data.yearly.act
+                const hasAct = isActColumn && (cell.row.original.data.daily.hasOwnProperty("act") || cell.row.original.data.monthly.hasOwnProperty("act") || cell.row.original.data.yearly.hasOwnProperty("act"));
+                const border = hasAct ? "" : "";
+                console.log(hasAct)
+                return (
+                  <TableCell key={cell.id} className={border}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          )) ?? (
+            <TableRow>
+              <TableCell>No results</TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+
+
+
         </Table>
       </div>
       {/* pagination */}
