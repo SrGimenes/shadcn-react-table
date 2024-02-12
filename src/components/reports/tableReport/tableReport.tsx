@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { DropdownMenuContent } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -15,7 +14,6 @@ import { DailyItem } from "@/data/type";
 
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 
@@ -31,11 +29,10 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { table } from "console";
 
 import React from "react";
-import { ThemeToggle } from "./ThemeToggle";
-import { DatePicker } from "./DataPickerRange";
+import { ThemeToggle } from "../../ThemeToggle";
+import { DatePicker } from "../../DataPickerRange";
 
 
 interface DataItemProps {
@@ -69,11 +66,11 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
       columnVisibility,
     },
   });
-
+  
   return (
     <div>
       {/* input */}
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filter by name"
           value={
@@ -88,52 +85,31 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
         <Button className="ml-4">
           Export to PDF
         </Button>
+
         <ThemeToggle className="ml-4"/>
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant="outline" className="ml-4" >Columns</Button>
-            
           </DropdownMenuTrigger>
-          {/* <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value: boolean) => {
-                      column.toggleVisibility(!!value);
-                    }}
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent> */}
         </DropdownMenu>
-        <DatePicker className = "ml-4" />
+
+        <DatePicker/>
+
       </div>
       {/* table */}
-      <div className="rounded-md border">
-        <Table>
+      <div >
+        <Table className="border">
           <TableHeader className="w-full">
             {table.getHeaderGroups().map((headerGroup) => {
               return (
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     const isParentHeader =
-                      header.column.columnDef.columns &&
-                      header.column.columnDef.columns.length > 0; 
+                      header.column.columns &&
+                      header.column.columns.length > 0; 
                     const colSpanValue = isParentHeader
-                      ? header.column.columnDef.columns.length === 4 ? 10 : header.column.columnDef.columns.length
+                      ? header.column.columns.length === 4 ? 10 : header.column.columns.length
                       : undefined;
-                      {console.log(isParentHeader, "isParentHeader")}
-                      {console.log(colSpanValue, "colSpanValue")}
-                      {console.log(header.column.columnDef.header, "header.column.columnDef.header")}
-                      {console.log(header.getContext(), "header.getContext()")}
                     return (
                       <TableHead
                         key={header.id}
@@ -142,7 +118,6 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                           isParentHeader
                             ? "justify-center text-center"
                             : undefined
-                            
                         }
                       >
                         {flexRender(
@@ -157,34 +132,13 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             })}
           </TableHeader>
 
-
-
-          {/* <TableBody>
-          {table.getRowModel().rows?.map((row) => (
-            <TableRow key={row.id} className="hover:bg-cyan-50">
-              {row.getVisibleCells().map((cell) => {
-                const act = cell.row.original.data.daily.act;
-                const border = act === "" ? "border-l" : ""; 
-                console.log(border)
-                return (
-                  <TableCell key={cell.id} className={border}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableBody> */}
-
         <TableBody>
           {table.getRowModel().rows?.map((row) => (
             <TableRow key={row.id} className="hover:bg-cyan-50">
               {row.getVisibleCells().map((cell) => {
-                const isActColumn = cell.row.original.data.daily.act && cell.row.original.data.monthly.act && cell.row.original.data.yearly.act
-                const hasAct = isActColumn && (cell.row.original.data.daily.hasOwnProperty("act") || cell.row.original.data.monthly.hasOwnProperty("act") || cell.row.original.data.yearly.hasOwnProperty("act"));
-                const border = hasAct ? "" : "";
-                console.log(hasAct)
-                return (
+                const hasAct = cell.column.columnDef.header === "ACT";
+                const border = hasAct ? "border-l" : "";
+                          return (
                   <TableCell key={cell.id} className={border}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -197,11 +151,9 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
             </TableRow>
           )}
         </TableBody>
-
-
-
         </Table>
       </div>
+
       {/* pagination */}
       <div className="flex items-center justify-start space-x-2 py-4">
         <Button

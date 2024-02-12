@@ -1,4 +1,4 @@
-import GenericDataItem from "@/components/generic-data-item";
+import GenericDataItem from "@/components/reports/tableReport/tableReport";
 import { DailyData } from "@/data/type";
 import { mineColumns } from "./mining-columns";
 

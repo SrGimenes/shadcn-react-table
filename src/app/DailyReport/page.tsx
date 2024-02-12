@@ -1,5 +1,5 @@
 import { mineColumns } from "@/components/reports/mining/mining-columns";
-import { GenericDataItem } from "../../components/generic-data-item"
+import { GenericDataItem } from "../../components/reports/tableReport/tableReport"
 import { dryingColumns } from "../../components/reports/drying/drying-columns";
 import { dataDaily } from "@/data/reportData";
 import { processingColumns } from "@/components/reports/processing/processing-columns";
