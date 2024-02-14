@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdownMenu";
 import { ArrowUpDown, MoreHorizontal, Rows } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Data, dataDaily } from "@/data/reportData";

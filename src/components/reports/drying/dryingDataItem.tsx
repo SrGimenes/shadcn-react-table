@@ -1,6 +1,6 @@
 import React from "react";
 import GenericDataItem from "@/components/reports/tableReport/tableReport";
-import { dryingColumns } from "./drying-columns";
+import { dryingColumns } from "./dryingColumns";
 import { DailyData, DailyItem } from "@/data/type";
 
 

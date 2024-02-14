@@ -1,6 +1,6 @@
 import GenericDataItem from "@/components/reports/tableReport/tableReport";
 import { DailyData } from "@/data/type";
-import { processingColumns } from "./processing-columns";
+import { processingColumns } from "./processingColumns";
 
 interface ProcessingDataItemProps {
   dailyData: DailyData;

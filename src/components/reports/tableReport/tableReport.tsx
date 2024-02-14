@@ -31,8 +31,8 @@ import {
 } from "@tanstack/react-table";
 
 import React from "react";
-import { ThemeToggle } from "../../ThemeToggle";
-import { DatePicker } from "../../DataPickerRange";
+import { ThemeToggle } from "../../themeToggle";
+import { DatePicker } from "../../dataPickerRange";
 
 
 interface DataItemProps {
@@ -69,10 +69,9 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
   
   return (
     <div>
-      {/* input */}
       <div className="flex items-center py-4 gap-2">
         <Input
-          placeholder="Filter by name"
+          placeholder="Filtrar por nome"
           value={
             (table.getColumn("name")?.getFilterValue() as string) || ""
           }
@@ -81,22 +80,17 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
           }}
           className="max-w-sm"
         />
-
         <Button className="ml-4">
           Export to PDF
         </Button>
-
         <ThemeToggle className="ml-4"/>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant="outline" className="ml-4" >Columns</Button>
+            <Button variant="outline" className="ml-4" >Tipo de Relatório</Button>
           </DropdownMenuTrigger>
         </DropdownMenu>
-
         <DatePicker/>
-
       </div>
-      {/* table */}
       <div >
         <Table className="border">
           <TableHeader className="w-full">
@@ -131,7 +125,6 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
               );
             })}
           </TableHeader>
-
         <TableBody>
           {table.getRowModel().rows?.map((row) => (
             <TableRow key={row.id} className="hover:bg-cyan-50">
@@ -153,8 +146,6 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
         </TableBody>
         </Table>
       </div>
-
-      {/* pagination */}
       <div className="flex items-center justify-start space-x-2 py-4">
         <Button
           variant="outline"

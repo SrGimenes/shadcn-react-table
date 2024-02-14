@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdownMenu";
 import { DailyItem } from "@/data/type";
 import { CellContext, ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
@@ -52,33 +52,7 @@ export const mineColumns: ColumnDef<DailyItem, any>[] = [
       {
         header: "Year",
         columns: createDailyColumns('yearly')
-      },
-      // {
-      //   id: "actions",
-      //   cell: ({ row }) => {
-      //     const person = row.original;
-      //     //const personId = person.id;
-      //     return (
-      //       <DropdownMenu>
-      //         <DropdownMenuTrigger asChild>
-      //           <Button variant="ghost" className="w-8 h-8 p-0">
-      //             <MoreHorizontal className="h-4 w-4" />
-      //           </Button>
-      //         </DropdownMenuTrigger>
-      //         <DropdownMenuContent>
-      //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-      //           <DropdownMenuItem
-      //           // onClick={() => {
-      //           //   navigator.clipboard.writeText(person.first_name.toString());
-      //           // }}
-      //           >
-      //             Copy person name
-      //           </DropdownMenuItem>
-      //         </DropdownMenuContent>
-      //       </DropdownMenu>
-      //     );
-      //   },
-      // },
+      }
     ],
   },
 ];
