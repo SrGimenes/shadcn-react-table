@@ -14,6 +14,7 @@ import { DailyItem } from "@/data/type";
 
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItemProps,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 
@@ -33,6 +34,7 @@ import {
 import React from "react";
 import { ThemeToggle } from "../../themeToggle";
 import { DatePicker } from "../../dataPickerRange";
+import { DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator } from "@/components/ui/dropdownMenu";
 
 
 interface DataItemProps {
@@ -40,11 +42,16 @@ interface DataItemProps {
   data: DailyItem[];
 }
 
+type Checked = DropdownMenuCheckboxItemProps["checked"]
+
 export function GenericDataItem({ columns, data }: DataItemProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [showTypeDrying, setShowTypeDrying] = React.useState<Checked>(true)
+  const [showTypeProcessing, setShowTypeProcessing] = React.useState<Checked>(true)
+  const [showTypeMine, setShowTypeMine] = React.useState<Checked>(true)
 
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -77,6 +84,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
           }
           onChange={(e) => {
             table.getColumn("name")?.setFilterValue(e.target.value);
+            console.log(e.target.value)
           }}
           className="max-w-sm"
         />
@@ -85,9 +93,31 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
         </Button>
         <ThemeToggle className="ml-4"/>
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant="outline" className="ml-4" >Tipo de Relatório</Button>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="ml-4 w-32" >Report</Button>
           </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-auto">
+            <DropdownMenuLabel>Select the report</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuCheckboxItem
+                checked={showTypeDrying}
+                onCheckedChange={setShowTypeDrying}
+              >
+                Drying
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={showTypeProcessing}
+                onCheckedChange={setShowTypeProcessing}
+              >
+                Processing
+              </DropdownMenuCheckboxItem>
+              <DropdownMenuCheckboxItem
+                checked={showTypeMine}
+                onCheckedChange={setShowTypeMine}
+              >
+                Mine
+              </DropdownMenuCheckboxItem>
+          </DropdownMenuContent>
         </DropdownMenu>
         <DatePicker/>
       </div>
