@@ -1,21 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { CellContext, ColumnDef } from "@tanstack/react-table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdownMenu";
-import { ArrowUpDown, MoreHorizontal, Rows } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Data, dataDaily } from "@/data/reportData";
-import { DailyData, DailyItem } from "@/data/type";
-import { Row, useRowSelect } from "react-table";
+import { DailyItem } from "@/data/type";
 
 interface ColumnDefinition {
   header: React.ReactNode;

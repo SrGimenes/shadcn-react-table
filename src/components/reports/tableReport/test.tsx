@@ -42,10 +42,7 @@ interface DataItemProps {
   data: DailyItem[];
 }
 
-type Checked = DropdownMenuCheckboxItemProps["checked"];
-
-
-
+type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 export function GenericDataItem({ columns, data }: DataItemProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -59,35 +56,8 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
 
-  const [tableData, setTableData] = React.useState<DailyItem[]>(data);
-
-  // React.useEffect(() => {
-  //   const filterData = () => {
-  //     const filteredData = data.filter(item => {
-  //       if (showTypeDrying && item.name === "Drying") return true;
-  //       if (showTypeProcessing && item.name === "Processing") return true;
-  //       if (showTypeMine && item.name === "Mine") return true;
-  //       return false;
-  //     });
-  //     setTableData(filteredData);
-  //   };
-  // }, [data, showTypeDrying, showTypeProcessing, showTypeMine]);
-
-  React.useEffect(() => {
-    // Filtrar os dados com base nas opções selecionadas
-    const filteredData = data.filter(item => {
-      if (showTypeDrying && item.name === "Drying") return true;
-      if (showTypeProcessing && item.name === "Processing") return true;
-      if (showTypeMine && item.name === "Mine") return true;
-      return false;
-    });
-
-    // Atualizar os dados da tabela
-    setTableData(filteredData);
-  }, [data, showTypeDrying, showTypeProcessing, showTypeMine]);
-
   const table = useReactTable({
-    data: tableData,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -103,11 +73,6 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
       columnVisibility,
     },
   });
-
-  // const filterTableData = () => {
-  //   const filteredData = filterData(data); // Reaplica o filtro aos dados
-  //   table.setTableData(filteredData); // Define os dados filtrados na tabela
-  // };
   
   return (
     <div>
@@ -136,24 +101,19 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
               <DropdownMenuSeparator />
               <DropdownMenuCheckboxItem
                 checked={showTypeDrying}
-                onCheckedChange={(checked) => {
-                  setShowTypeDrying(checked);
-                }}
+                onCheckedChange={setShowTypeDrying}
               >
                 Drying
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem
                 checked={showTypeProcessing}
-                onCheckedChange={(checked) => {
-                  setShowTypeProcessing(checked);
-                }}
+                onCheckedChange={setShowTypeProcessing}
               >
                 Processing
               </DropdownMenuCheckboxItem>
               <DropdownMenuCheckboxItem
                 checked={showTypeMine}
-                onCheckedChange={(checked) => {setShowTypeMine(checked)
-                }}
+                onCheckedChange={setShowTypeMine}
               >
                 Mine
               </DropdownMenuCheckboxItem>

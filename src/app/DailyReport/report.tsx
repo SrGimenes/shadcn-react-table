@@ -1,9 +1,12 @@
 "use client";
 
 import { DatePicker } from "@/components/dataPickerRange";
+import { dryingColumns } from "@/components/reports/drying/dryingColumns";
+import GenericDataItem from "@/components/reports/tableReport/tableReport";
 import { ThemeToggle } from "@/components/themeToggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { dataDaily } from "@/data/reportData";
 import { DailyItem } from "@/data/type";
 
 import {
@@ -30,7 +33,7 @@ interface DataItemProps {
   data: DailyItem[];
 }
 
-export function DailyReport({ columns, data }: DataItemProps) {
+const DailyReport = ({ columns, data }: DataItemProps) => {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -58,13 +61,14 @@ export function DailyReport({ columns, data }: DataItemProps) {
   });
 
   return (
-    <div>
+    <div className="flex flex-col space-y-1">
       <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filtrar por nome"
           value={(table.getColumn("name")?.getFilterValue() as string) || ""}
           onChange={(e) => {
             table.getColumn("name")?.setFilterValue(e.target.value);
+            console.log(e.target.value)
           }}
           className="max-w-sm"
         />
