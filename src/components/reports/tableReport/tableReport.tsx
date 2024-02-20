@@ -10,13 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DailyData, DailyItem } from "@/data/type";
-
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItemProps,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+import { DailyItem } from "@/data/type";
 
 import {
   ColumnDef,
@@ -32,72 +26,24 @@ import {
 } from "@tanstack/react-table";
 
 import React from "react";
-import { ThemeToggle } from "../../themeToggle";
-import { DatePicker } from "../../dataPickerRange";
-import {
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdownMenu";
 
 interface DataItemProps {
   columns: ColumnDef<DailyItem, any>[];
   data: DailyItem[];
 }
 
-type Checked = DropdownMenuCheckboxItemProps["checked"];
-
-interface DataTypeProps {
-  columns: ColumnDef<DailyData, any>[];
-  data: DailyData[];
-}
-
-export function GenericDataItem(
-  { columns: columnsDataItem, data: dataItem }: DataItemProps,
-  { columns: columnsDataType, data: dataType }: DataTypeProps
-) {
+export function GenericDataItem({ columns, data }: DataItemProps) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = 
-    React.useState<ColumnFiltersState>([]);
-
-  const [showTypeDrying, setShowTypeDrying] = 
-    React.useState<Checked>(true);
-
-  const [showTypeProcessing, setShowTypeProcessing] =
-    React.useState<Checked>();
-
-  const [showTypeMine, setShowTypeMine] = 
-    React.useState<Checked>();
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
 
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
 
-  const [tableDataItem, setTableDataItem] =
-    React.useState<DailyItem[]>(dataItem);
-
-  const [tableDataType, setTableDataType] =
-    React.useState<DailyData[]>(dataType);
-
-  React.useEffect(() => {
-    // Filtrar os dados com base nas opções selecionadas
-    const filteredData = dataType.filter((item) => {
-      if (showTypeDrying && item.hasOwnProperty("drying")) return true;
-      if (showTypeProcessing && item.hasOwnProperty("processing")) return true;
-      if (showTypeMine && item.hasOwnProperty("mine")) return true;
-      return false;
-    });
-    console.log(filteredData);
-
-    // Atualizar os dados da tabela
-    setTableDataType(filteredData);
-  }, [dataType, showTypeDrying, showTypeProcessing, showTypeMine]);
-
   const table = useReactTable({
-    data: dataItem,
-    columns: columnsDataItem,
+    data,
+    columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -113,11 +59,6 @@ export function GenericDataItem(
     },
   });
 
-  // const filterTableData = () => {
-  //   const filteredData = filterData(data); // Reaplica o filtro aos dados
-  //   table.setTableData(filteredData); // Define os dados filtrados na tabela
-  // };
-
   return (
     <div>
       <div className="flex items-center py-4 gap-2">
@@ -130,44 +71,6 @@ export function GenericDataItem(
           }}
           className="max-w-sm"
         />
-        <Button className="ml-4">Export to PDF</Button>
-        <ThemeToggle className="ml-4" />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-4 w-32">
-              Report
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-auto">
-            <DropdownMenuLabel>Select the report</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem
-              checked={showTypeDrying}
-              onCheckedChange={(checked) => {
-                setShowTypeDrying(checked);
-              }}
-            >
-              Drying
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={showTypeProcessing}
-              onCheckedChange={(checked) => {
-                setShowTypeProcessing(checked);
-              }}
-            >
-              Processing
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={showTypeMine}
-              onCheckedChange={(checked) => {
-                setShowTypeMine(checked);
-              }}
-            >
-              Mine
-            </DropdownMenuCheckboxItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DatePicker />
       </div>
       <div>
         <Table className="border">

@@ -1,38 +1,31 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdownMenu";
 import { DailyItem } from "@/data/type";
 
 import { CellContext, ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
 
-const createDailyColumns = (prefix: 'daily' | 'monthly' | 'yearly'): ColumnDef<DailyItem, any>[] => [
-    {
-      header: "ACT",
-      accessorKey: `data.${prefix}.act`,
-      cell: ({ cell }: CellContext<DailyItem, any>) =>
-        cell.row.original.data[prefix].act,
-    },
-    {
-      header: "BP",
-      accessorKey: `data.${prefix}.bp`,
-      cell: ({ cell }: CellContext<DailyItem, any>) =>
-        cell.row.original.data[prefix].bp,
-    },
-    {
-      header: "VAR",
-      accessorKey: `data.${prefix}.var`,
-      cell: ({ cell }: CellContext<DailyItem, any>) =>
-        cell.row.original.data[prefix].var,
-    },
-  ];
+const createDailyColumns = (
+  prefix: "daily" | "monthly" | "yearly"
+): ColumnDef<DailyItem, any>[] => [
+  {
+    header: "ACT",
+    accessorKey: `data.${prefix}.act`,
+    cell: ({ cell }: CellContext<DailyItem, any>) =>
+      cell.row.original.data[prefix].act,
+  },
+  {
+    header: "BP",
+    accessorKey: `data.${prefix}.bp`,
+    cell: ({ cell }: CellContext<DailyItem, any>) =>
+      cell.row.original.data[prefix].bp,
+  },
+  {
+    header: "VAR",
+    accessorKey: `data.${prefix}.var`,
+    cell: ({ cell }: CellContext<DailyItem, any>) =>
+      cell.row.original.data[prefix].var,
+  },
+];
 
 export const processingColumns: ColumnDef<DailyItem, any>[] = [
   {
@@ -44,16 +37,16 @@ export const processingColumns: ColumnDef<DailyItem, any>[] = [
       },
       {
         header: "Daily",
-        columns: createDailyColumns('daily')
+        columns: createDailyColumns("daily"),
       },
       {
         header: "Monthly",
-        columns: createDailyColumns('monthly')
+        columns: createDailyColumns("monthly"),
       },
       {
         header: "Year",
-        columns: createDailyColumns('yearly')
-      }
+        columns: createDailyColumns("yearly"),
+      },
     ],
   },
 ];

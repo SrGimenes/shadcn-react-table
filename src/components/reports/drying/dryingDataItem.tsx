@@ -3,14 +3,13 @@ import GenericDataItem from "@/components/reports/tableReport/tableReport";
 import { dryingColumns } from "./dryingColumns";
 import { DailyData, DailyItem } from "@/data/type";
 
-
 interface DryingDataItemProps {
-    dailyData: DailyData;
+  dailyData: DailyData;
 }
 
 function DryingDataItem({ dailyData }: DryingDataItemProps) {
-    const dryingData = dailyData.drying;
-    return <GenericDataItem columns={dryingColumns} data={dryingData} />;
+  const dryingData = dailyData.drying;
+  return <GenericDataItem columns={dryingColumns} data={dryingData} />;
 }
 
 export default DryingDataItem;

@@ -3,12 +3,9 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table";
 import { DailyItem } from "@/data/type";
 
-interface ColumnDefinition {
-  header: React.ReactNode;
-  accessorKey: string;
-}
-
-const createDailyColumns = (prefix: 'daily' | 'monthly' | 'yearly'): ColumnDef<DailyItem, any>[] => [
+const createDailyColumns = (
+  prefix: "daily" | "monthly" | "yearly"
+): ColumnDef<DailyItem, any>[] => [
   {
     header: "ACT",
     accessorKey: `data.${prefix}.act`,
@@ -39,15 +36,15 @@ export const dryingColumns: ColumnDef<DailyItem, any>[] = [
       },
       {
         header: "Daily",
-        columns: createDailyColumns('daily'),
+        columns: createDailyColumns("daily"),
       },
       {
         header: "Monthly",
-        columns: createDailyColumns('monthly'),
+        columns: createDailyColumns("monthly"),
       },
       {
         header: "Year",
-        columns: createDailyColumns('yearly'),
+        columns: createDailyColumns("yearly"),
       },
     ],
   },
