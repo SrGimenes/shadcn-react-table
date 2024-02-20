@@ -3,12 +3,12 @@ import { DailyData } from "@/data/type";
 import { mineColumns } from "./miningColumns";
 
 interface MiningDataItemProps {
-    dailyData: DailyData;
+  dailyData: DailyData;
 }
 
-function MiningDataItem({dailyData}: MiningDataItemProps) {
-    const miningData = dailyData.mine;
-    return <GenericDataItem columns={mineColumns} data={miningData} />;
+function MiningDataItem({ dailyData }: MiningDataItemProps) {
+  const miningData = dailyData.mine;
+  return <GenericDataItem columns={mineColumns} data={miningData} />;
 }
 
 export default MiningDataItem;

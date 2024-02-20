@@ -8,7 +8,7 @@ interface ProcessingDataItemProps {
 
 function ProcessingDataItem({ dailyData }: ProcessingDataItemProps) {
   const processingData = dailyData.processing;
-  return <GenericDataItem columns={processingColumns} data={processingData}/>;
+  return <GenericDataItem columns={processingColumns} data={processingData} />;
 }
 
-export default ProcessingDataItem; 
+export default ProcessingDataItem;
