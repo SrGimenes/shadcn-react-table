@@ -56,7 +56,7 @@ const Report = () => {
 
   return (
     <div className="container py-10 mx-auto">
-      <div className="flex items-center py-4 gap-2">
+      <div className="flex justify- items-center py-4 gap-2">
         <Button variant="default" className="ml-4">
           Export to PDF
         </Button>
