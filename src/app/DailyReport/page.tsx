@@ -56,10 +56,12 @@ const Report = () => {
 
   return (
     <div className="container py-10 mx-auto">
-      <div className="flex justify- items-center py-4 gap-2">
-        <Button variant="default" className="ml-4">
-          Export to PDF
-        </Button>
+      <div className="flex justify-start items-center py-4 gap-2">
+
+          <Button variant="default" className="">
+            Export to PDF
+          </Button>
+
         <ThemeToggle className="ml-4" />
         <DropdownMenu>
           <DropdownMenuTrigger asChild className="ml-4">

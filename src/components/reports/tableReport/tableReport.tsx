@@ -109,7 +109,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.map((row) => (
-              <TableRow key={row.id} className="hover:bg-cyan-50">
+              <TableRow key={row.id} >
                 {row.getVisibleCells().map((cell) => {
                   const hasAct = cell.column.columnDef.header === "ACT";
                   const border = hasAct ? "border-l" : "";
