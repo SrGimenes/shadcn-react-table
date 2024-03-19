@@ -109,7 +109,7 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.map((row) => (
-              <TableRow key={row.id} >
+              <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   const hasAct = cell.column.columnDef.header === "ACT";
                   const border = hasAct ? "border-l" : "";
@@ -124,10 +124,10 @@ export function GenericDataItem({ columns, data }: DataItemProps) {
                 })}
               </TableRow>
             )) ?? (
-              <TableRow>
-                <TableCell>No results</TableCell>
-              </TableRow>
-            )}
+                <TableRow>
+                  <TableCell>No results</TableCell>
+                </TableRow>
+              )}
           </TableBody>
         </Table>
       </div>
